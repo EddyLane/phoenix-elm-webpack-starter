@@ -1,3 +1,16 @@
-import Html exposing (..)
+module Main (main) where
 
-main = div [] [ text "Hello world" ]
+import StartApp exposing (start)
+import Html exposing (..)
+import State
+import Types
+import View
+
+app = start { init = State.initialState
+            , update = State.update
+            , view = View.root
+            , inputs = []
+            }
+
+main : Signal Html
+main = app.html
