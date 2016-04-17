@@ -10,4 +10,8 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-ElmElixirWorkshop.Repo.insert!(%ElmElixirWorkshop.User{})
+alias ElmElixirWorkshop.User
+
+defaultUser = User.create_changeset(%User{}, %{name: "Eddy", email: "eddy@uvd.co.uk", password: "Eddy" })
+
+ElmElixirWorkshop.Repo.insert!(defaultUser)

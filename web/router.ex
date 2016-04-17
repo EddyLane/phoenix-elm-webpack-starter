@@ -1,4 +1,5 @@
 defmodule ElmElixirWorkshop.Router do
+
   use ElmElixirWorkshop.Web, :router
 
   pipeline :browser do
@@ -18,10 +19,11 @@ defmodule ElmElixirWorkshop.Router do
     plug :accepts, ["json"]
     plug Guardian.Plug.VerifyHeader # Looks in the Authorization header for the token
     plug Guardian.Plug.LoadResource
+
   end
 
   scope "/", ElmElixirWorkshop do
-    pipe_through :browser # Use the default browser stack
+    pipe_through [:browser, :browser_session] # Use the default browser stack
 
     get "/", PageController, :index
 
@@ -34,8 +36,12 @@ defmodule ElmElixirWorkshop.Router do
 
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", ElmElixirWorkshop do
-  #   pipe_through :api
-  # end
+   scope "/api", ElmElixirWorkshop do
+     pipe_through :api
+
+     resources "/messages", MessageController, except: [:new, :edit]
+     resources "/users", Json.UserController, except: [:new, :edit]
+
+  end
+
 end

@@ -69,4 +69,10 @@ defmodule ElmElixirWorkshop.UserController do
     |> put_flash(:info, "User deleted successfully.")
     |> redirect(to: user_path(conn, :index))
   end
+
+    def forbidden(conn, _) do
+      conn
+      |> put_flash(:error, "Forbidden")
+      |> redirect(to: user_path(conn, :index))
+    end
 end
