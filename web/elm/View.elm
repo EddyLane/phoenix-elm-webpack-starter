@@ -1,4 +1,5 @@
 module View where
+
 import Html exposing (..)
 import Types exposing (Action, Model)
 

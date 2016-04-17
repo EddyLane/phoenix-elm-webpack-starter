@@ -15,9 +15,9 @@ import "phoenix_html"
 
 import Elm from '../../elm/Main'
 
-console.log(Elm);
+const rootElement = document.getElementById('elm-root');
 
-const app = Elm.embed(Elm.Main, document.getElementById('elm-root'));
+Elm.embed(Elm.Main, rootElement);
 
 // Import local files
 //

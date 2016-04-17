@@ -28,6 +28,10 @@
       <main role="main">
         <div id="elm-root">
         </div>
+
+                <%= render @view_module, @view_template, assigns %>
+
+
       </main>
 
     </div> <!-- /container -->
